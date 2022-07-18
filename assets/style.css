@@ -1,0 +1,15 @@
+/*Universal Selector*/
+* body {
+    box-sizing: border=box;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 40px;
+    color: white;
+    background-color: blue;
+    margin: 0;
+    padding: 2px 40px;
+}
