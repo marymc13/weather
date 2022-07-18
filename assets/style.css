@@ -1,6 +1,8 @@
 /*Universal Selector*/
 * body {
     box-sizing: border=box;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 .heading {
@@ -12,4 +14,30 @@
     background-color: blue;
     margin: 0;
     padding: 2px 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--dark);
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.btn {
+    font-size: 1.3rem;
+    text-decoration:none;
+    width: 100%;
+    display: block;
+    margin: 5px;
+    color: black;
+    border: 1px solid black;
+    padding:5px 70px;
+    outline: none;
+    box-shadow: 3px 3px;
+    transform: translate(-1px, -1px);
+    display:flex;
+    align-content: left;
+    justify-content: left;
+
 }

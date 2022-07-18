@@ -5,12 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Check The Weather</title>
-    <link rel="stylesheet" href ="./assets/style.css"
+    <link rel="stylesheet" href ="./assets/style.css">
   </head>
-
+<!--Heading-->
   <header class="heading">Weather Dashboard</header>
-  <body>
+  
+<body>
+ <main class="flex-row justify-space-between">
+    <div class="col-12 col-md-4">
+     <div class="card">      
+      <h1 class="card-header">Search for a City:</h1>
+       <form id="user-form" class="card-body">
+        <label class="form-label" for="city">City</label>
+        <input name="city" id="city" type="text" autofocus="true" class="form-input"/>
+        <button type="submit" class="btn">Get City</button>
+       </form>
+     </div>
+    </div>
 
+    <div class="col-12 col-md-8">
+        <h2 class="city-list">Showing weather for:<span id="weather-search-term"></span></h2>
+        <div id="weather-container" class="list-group">
+        </div>
+    </div>
   </body>
 </html>
 
