@@ -1,5 +1,5 @@
 /*Universal Selector*/
-* body {
+* {
     box-sizing: border-box;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
@@ -40,18 +40,19 @@ body {
     justify-content: left;
 
 }
+
+
+
 .city-list {
     padding: 0 50px;
     margin: 0;
     display: flex;
     justify-content: center;
-    align-content:center
+    align-content:center;
     background-color:white;
     color: black;
     border: 2px solid black;
   }
-  
- 
   
   .app-title {
     font-size: 3rem;

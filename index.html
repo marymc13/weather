@@ -11,10 +11,10 @@
   </head>
 <!--Heading-->
   <header class="heading">Weather Dashboard</header>
-  
+ <!--Body--> 
 <body>
  <main class="flex-row justify-space-between">
-    <div class="col-12 col-md-4">
+    <aside class="col-3 col-md-4">
      <div class="card">      
       <h1 class="card-header">Search for a City:</h1>
        <form id="city-form" class="card-body">
@@ -23,11 +23,13 @@
         <button type="submit" class="btn">Get City</button>
        </form>
      </div>
-    </div>
+    </aside>
 
-    <div class="col-12 col-md-8">
+    <div class="col-9 col-md-8">
         <h2 class="city-list">Weather for:<span id="weather-search-term"></span></h2>
         <div id="weather-container" class="list-group">
+          <section id="cityWeather"></section>
+          <section id="five-day-forecast">5 Day Forecast</section>
         </div>
     </div>
     </main>
