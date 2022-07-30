@@ -14,25 +14,31 @@
  <!--Body--> 
 <body>
  <main class="flex-row justify-space-between">
+  <div class="row">
     <aside class="col-3 col-md-4">
      <div class="card">      
       <h1 class="card-header">Search for a City:</h1>
        <form id="city-form" class="card-body">
         <label class="form-label" for="city">City</label>
         <input name="city" id="city" type="text" autofocus="true" class="form-input"/>
-        <button type="submit" class="btn">Get City</button>
+        
+        <button id="search" type="submit" class="btn">Get City</button>
        </form>
-     </div>
+       </div>
+     
     </aside>
-
+    
     <div class="col-9 col-md-8">
+      
         <h2 class="city-list">Weather for:<span id="weather-search-term"></span></h2>
         <div id="weather-container" class="list-group">
           <section id="cityWeather"></section>
-          <section id="five-day-forecast">5 Day Forecast</section>
+            <div id="daily"></div>
+          <section id="forecast">5 Day Forecast</section>
+        </div>
         </div>
     </div>
-    </main>
+   </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="./assets/script.js"></script>
