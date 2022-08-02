@@ -1,4 +1,4 @@
-var apiKey = "92c23b223e0a7ee98ceded803b6da503";
+var apiKey = "0bcadb38909d7094222c11ab8e636715";
 var city;
 var cityFormEl = document.querySelector("#city-form");
 var cityInputEl = document.querySelector("#city");
@@ -8,19 +8,29 @@ var newName = document.getElementById("#city");
 
 
 function getCityWeather(cityName) {
+    var cityWeather = document.getElementById("city").value;
+    if (!cityWeather) return;
     //weather URL
-    //var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=orlando&appid=92c23b223e0a7ee98ceded803b6da503";
-    var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${apiKey}`;
-
+    var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=`+cityWeather+`&limit=1&appid=`+apiKey;
+   
     //Request data from url
     fetch(apiUrl)
-        .then(response=>response.json())
-        .then(response=> console.log(response))   
-        .catch(err=>console.error(err));
+        .then(response=>
+            response.json())
+        .then(response=> {
+            console.log(response);
+            getWeather({
+               lat: response[0].lat,
+               lon: response[0].lon
+            });
+        })
+        .catch(err=>
+            console.error(err));
 }
 function getWeather(location) {
-    var {lat, lon} = location;
     console.log(location);
+    var {lat, lon} = location;
+    
     var city = location.name; 
     var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}`;
 
@@ -42,17 +52,16 @@ function renderWeather(city,data) {
     currentDay(city, data.current, data.timezone);
     forecast(data.daily, data.timezone);
 }
-
 //var formSubmitHandler = function(event) {
     //Prevent default
- //   event.preventDefault();
-  //  console.log(event);
+   //
+   // console.log(event);
    // if (!cityName) {
-       // return;
-  //  }
-  //  var cityName = cityInputEl.value.trim(); 
-  //  cityInputEl.value = "";
-  //  console.log(cityName);
+   //     return;
+   //}
+   //var cityName = cityInputEl.value.trim(); 
+   // cityInputEl.value = "";
+   // console.log(cityName);
    
 //};
 
@@ -62,11 +71,10 @@ var displayWeather = function (city, searchTerm) {
     weatherSearchTerm.textContent = searchTerm;
 }
 
-//cityFormEl.addEventListener("submit", formSubmitHandler);
-//Search for City Weather
-document.getElementById("search").onclick = function() {
-    var cityWeather = document.getElementById("city").value;
-    console.log(cityWeather);
-    getWeather();
-
-};
+//Search for City Weather 
+document.getElementById("search").onclick = function(event) {
+    event.preventDefault();
+   
+     getCityWeather();
+    
+}

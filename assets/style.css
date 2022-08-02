@@ -19,7 +19,7 @@
 body {
     margin: 0;
     padding: 0;
-    color: var(--dark);
+    color: black;
     line-height: 1.5;
     font-size: 16px;
 }
@@ -45,21 +45,20 @@ body {
 
 .city-list {
     padding: 0 50px;
-    margin: 90px 50px;
+    margin: 90px 20px;
     display: flex;
     justify-content: center;
     align-content:center;
     background-color:white;
     color: black;
     border: 2px solid black;
+    width: 600px;
+    height: 200px;
   }
   
-  .app-title {
-    font-size: 3rem;
-    background-color: var(--primary);
-    color: var(--dark);
-    padding: 0 10px;
-    display: inline-block;
-    border-radius: var(--border-radius);
-    box-shadow: 6px 5px var(--light-dark);
+  #card-a, #card-b, #card-c, #card-d, #card-e {
+   border: 2px solid black;
+   width: 50px;
+   height: 200px;
+   margin: 5px;
   }
