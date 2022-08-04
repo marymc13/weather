@@ -46,9 +46,6 @@ body {
 #container {
     padding: 0 10px;
     margin: 50px 20px;
-    display: flex;
-    justify-content: center;
-    align-content:center;
     background-color:white;
     color: black;
     border: 2px solid black;
@@ -56,13 +53,12 @@ body {
     height: 200px;
   }
 
-  .city-list {
-    padding: 0;
-    margin: 0;
+  .city {
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-content: center;
-
+    padding: 0px;
   }
   
   #card-a, #card-b, #card-c, #card-d, #card-e {

@@ -7,26 +7,24 @@ var weatherSearchTerm = document.querySelector("#weather-search-term");
 var newName = document.getElementById("#city");
 
 
-function getCityWeather(cityName) {
+function getCityWeather(cityWeather) {
     var cityWeather = document.getElementById("city").value;
     if (!cityWeather) return;
     //weather URL
-    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=`+cityWeather+`&limit=1&appid=`+apiKey;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=`+cityWeather+ `&units=imperial&limit=1&appid=`+apiKey;
     
     //Request data from url
     fetch(apiUrl)
         .then(response=>
             response.json())
-        .then(data=> {
-            console.log(data);
-            getWeather({
-               lat: data[0].lat,
-               lon: data[0].lon
-            
-            });
-        })
-        .catch(err=>
-            console.error(err));
+        .then(data=> 
+            this.displayWeather(data));
+            //getWeather({
+              // lat: data[0].lat,
+             //  lon: data[0].lon
+            //})
+        //.catch(err=>
+           // console.error(err)),
 }
 function getWeather(location) {
     console.log(location);
@@ -54,31 +52,34 @@ function renderWeather(city,data) {
     forecast(data.daily, data.timezone);
     displayWeather(data);
 }
-//var formSubmitHandler = function(event) {
-    //Prevent default
-   //
-   // console.log(event);
-   // if (!cityName) {
-   //     return;
-   //}
-   //var cityName = cityInputEl.value.trim(); 
-   // cityInputEl.value = "";
-   // console.log(cityName);
-   
-//};
 
 //Display weather
 function displayWeather(data) {
-    const dailyWeather = main.humidity.temp
-    const weatherInfo = document.getElementById('weather-search-term');
-    weatherInfo.textContent = dailyWeather
-    weatherContainerEl.textContent = weatherInfo;
+    
+   const { name } = data;
+   const { temp, humidity } = data.main;
+   const { speed } = data.wind;
+
+   console.log(name, temp, humidity, speed);
+   document.querySelector(".city").innerText = "Weather for " + name;
+   document.querySelector(".temp").innerText = "Temp: " + temp + "°F";
+   document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
+   document.querySelector(".wind").innerText = "Wind speed: " + speed + "km/h";
+}
+
+//5 Day forecast
+function fiveDayForecast(forecast) {
+    var forecast = getElementById("forecast").value;
+    if(!forecast) return;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=`+lat+`&lon=`+lon+`&appid= `+ apiKey;
+
+    fetch(apiUrl)
 }
 
 //Search for City Weather 
 document.getElementById("search").onclick = function(event) {
     event.preventDefault();
-   
-     getCityWeather();
-    
-}
+     getCityWeather(); 
+     getfiveDayForecast();  
+  }
+
