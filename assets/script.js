@@ -11,17 +11,18 @@ function getCityWeather(cityName) {
     var cityWeather = document.getElementById("city").value;
     if (!cityWeather) return;
     //weather URL
-    var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=`+cityWeather+`&limit=1&appid=`+apiKey;
-   
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=`+cityWeather+`&limit=1&appid=`+apiKey;
+    
     //Request data from url
     fetch(apiUrl)
         .then(response=>
             response.json())
-        .then(response=> {
-            console.log(response);
+        .then(data=> {
+            console.log(data);
             getWeather({
-               lat: response[0].lat,
-               lon: response[0].lon
+               lat: data[0].lat,
+               lon: data[0].lon
+            
             });
         })
         .catch(err=>
@@ -32,7 +33,7 @@ function getWeather(location) {
     var {lat, lon} = location;
     
     var city = location.name; 
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}`;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}`;
 
     fetch(apiUrl)
     .then(function (res) {
@@ -51,6 +52,7 @@ function getWeather(location) {
 function renderWeather(city,data) {
     currentDay(city, data.current, data.timezone);
     forecast(data.daily, data.timezone);
+    displayWeather(data);
 }
 //var formSubmitHandler = function(event) {
     //Prevent default
@@ -66,9 +68,11 @@ function renderWeather(city,data) {
 //};
 
 //Display weather
-var displayWeather = function (city, searchTerm) {
-    weatherContainerEl.textContent = "";
-    weatherSearchTerm.textContent = searchTerm;
+function displayWeather(data) {
+    const dailyWeather = main.humidity.temp
+    const weatherInfo = document.getElementById('weather-search-term');
+    weatherInfo.textContent = dailyWeather
+    weatherContainerEl.textContent = weatherInfo;
 }
 
 //Search for City Weather 

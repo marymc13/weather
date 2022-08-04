@@ -43,9 +43,9 @@ body {
 
 
 
-.city-list {
-    padding: 0 50px;
-    margin: 90px 20px;
+#container {
+    padding: 0 10px;
+    margin: 50px 20px;
     display: flex;
     justify-content: center;
     align-content:center;
@@ -54,6 +54,15 @@ body {
     border: 2px solid black;
     width: 600px;
     height: 200px;
+  }
+
+  .city-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
   }
   
   #card-a, #card-b, #card-c, #card-d, #card-e {
