@@ -17,15 +17,17 @@ function getCityWeather(cityWeather) {
     fetch(apiUrl)
         .then(response=>
             response.json())
-        .then(data=> 
-            this.displayWeather(data));
-            //getWeather({
-              // lat: data[0].lat,
-             //  lon: data[0].lon
-            //})
-        //.catch(err=>
-           // console.error(err)),
-}
+        .then(data=> {
+            this.displayWeather(data),
+            console.log(data),
+            getWeather({
+               lat: data.coord.lat,
+             lon: data.coord.lon
+            })
+        })
+        .catch(err=>
+            console.error(err))
+        }
 function getWeather(location) {
     console.log(location);
     var {lat, lon} = location;
@@ -39,7 +41,8 @@ function getWeather(location) {
     })
     .then(data=>{
         console.log(data);
-        renderWeather(city, data);
+        fiveDayForecast(city, data);
+        //renderWeather(city, data);
     }) 
     .catch(function (err) {
         console.error(err);
@@ -47,11 +50,11 @@ function getWeather(location) {
 }   
 
 
-function renderWeather(city,data) {
-    currentDay(city, data.current, data.timezone);
-    forecast(data.daily, data.timezone);
-    displayWeather(data);
-}
+//function renderWeather(city,data) {
+    //currentDay(city, data.current, data.timezone);
+    //forecast(data.daily, data.timezone);
+    //displayWeather(data);
+//}
 
 //Display weather
 function displayWeather(data) {
@@ -59,6 +62,7 @@ function displayWeather(data) {
    const { name } = data;
    const { temp, humidity } = data.main;
    const { speed } = data.wind;
+
 
    console.log(name, temp, humidity, speed);
    document.querySelector(".city").innerText = "Weather for " + name;
@@ -69,17 +73,29 @@ function displayWeather(data) {
 
 //5 Day forecast
 function fiveDayForecast(forecast) {
-    var forecast = getElementById("forecast").value;
-    if(!forecast) return;
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=`+lat+`&lon=`+lon+`&appid= `+ apiKey;
-
+    var fiveDayForecast = document.getElementById("forecast").value;
+    if(!fiveDayForecast) return;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+//var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityWeather}&units=imperial&appid=${apiKey}`
     fetch(apiUrl)
-}
+    .then(function(res) {
+        return res.json();
+    })
+    .then(data=>{
+        console.log(data)
+        //this.displayfiveDayForecast(data));
+    })
 
+    for(var i = 0; i < 5; i++);
+    forecast[i].temp.humidity
+    var fiveDay = document.createElement(div);
+    
+}
+//fiveDayForecast();
 //Search for City Weather 
 document.getElementById("search").onclick = function(event) {
     event.preventDefault();
      getCityWeather(); 
-     getfiveDayForecast();  
+       
   }
 
