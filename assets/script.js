@@ -39,10 +39,28 @@ function getWeather(location) {
     .then(function (res) {
         return res.json();
     })
-    .then(data=>{
-        console.log(data);
-        displayCurrentDayForecast(city, data);
-        fiveDayForecast(city, data);
+    .then(function(weather) {
+       // $('#current-icon').html('');
+       $('#current-city').html('');
+        $('#current-temp').html('');
+        $('#current-wind').html('');
+        $('#current-humidity').html('');
+        $('#uv-index').html('');
+  
+        // get current date of searched city according to timezone
+        let currentDay = moment(weather.current.dt * 1000 + (weather.timezone_offset * 1000)).format('dddd, l');
+  
+        // display current weather information of city
+       // $('#current-icon').append('<img src="./assets/images/icons/' + weather.current.weather[0].icon + '.svg" alt="' + weather.current.weather[0].description + '"/>');
+       $('#current-city').append(");
+       $('#current-temp').append('<p class="current-temp">' + Math.round(weather.current.temp) + '° F</p><p>');
+        $('#current-wind').append('<strong>Wind:</strong><br />' + weather.current.wind_speed + ' MPH');
+        $('#current-humidity').append('<strong>Humidity:</strong><br />' + weather.current.humidity + '%');
+        $('#current-uv-index').append('<strong>UV Index:</strong><br /><span class="bg-uvi">' + weather.current.uvi + '</span>');   
+    // .then(data=>{
+    //     console.log(data);
+    //     displayCurrentDayForecast(city, data);
+    //     fiveDayForecast(city, data);
         //renderWeather(city, data);
     }) 
     .catch(function (err) {
@@ -57,12 +75,12 @@ function getWeather(location) {
     //displayWeather(data);
 //}
 function displayCurrentDayForecast(city, weatherData ) {
-  var todaysDate =  moment().format('MM/DD/YYYY');
-  var CurrentDayEl = document.createElement("h2");
+ var todaysDate =  moment().format('MM/DD/YYYY');
+ var currentDayEl = document.createElement("h2");
 
 
-//currentDayContainerEl.append(currentDayEl);
-//currentDayContainerEl.append(currentDayEl);
+currentDayContainerEl.append(currentDayEl);
+currentDayContainerEl.append(currentDayEl);
 
 
 }
