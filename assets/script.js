@@ -52,7 +52,7 @@ function getWeather(location) {
   
         // display current weather information of city
        // $('#current-icon').append('<img src="./assets/images/icons/' + weather.current.weather[0].icon + '.svg" alt="' + weather.current.weather[0].description + '"/>');
-       $('#current-city').append(");
+       $('#current-city').append('');
        $('#current-temp').append('<p class="current-temp">' + Math.round(weather.current.temp) + '° F</p><p>');
         $('#current-wind').append('<strong>Wind:</strong><br />' + weather.current.wind_speed + ' MPH');
         $('#current-humidity').append('<strong>Humidity:</strong><br />' + weather.current.humidity + '%');
@@ -104,7 +104,7 @@ function fiveDayForecast(forecast) {
     var fiveDayForecast = document.getElementById("forecast").value;
     if(!fiveDayForecast) return;
 
-   // var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    //var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 //var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityWeather}&units=imperial&appid=${apiKey}`
     fetch(apiUrl)
     .then(function(res) {
@@ -115,18 +115,18 @@ function fiveDayForecast(forecast) {
         getfiveDayForecast(data);
     })
 
-   // for(var i = 0; i < city.length; i++) {
-      //  var listItem = document.createElement('li');
-    //  listItem.textContent = city[i].html;
+   for(var i = 0; i < city.length; i++) {
+       var listItem = document.createElement('li');
+     listItem.textContent = city[i].html;
 
-   //
+   
 
 }
-    //forecast[i].temp.humidity
-   // var fiveDay = document.createElement(div);
+    forecast[i].temp.humidity
+   var fiveDay = document.createElement(div);
     
-//}
-//fiveDayForecast();
+}
+fiveDayForecast();
 //Search for City Weather 
 document.getElementById("search").onclick = function(event) {
     event.preventDefault();
